@@ -75,7 +75,7 @@ passwd youtube
 
 
 #APPs install
-sudo pacman -S yaourt git openssh
+sudo pacman -S yaourt git openssh fcitx
 
 *Not try for yaourt*
 ##############################################################################################
