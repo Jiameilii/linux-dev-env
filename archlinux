@@ -77,9 +77,22 @@ passwd youtube
 #APPs install
 sudo pacman -S yaourt git openssh fcitx
 
-*Not try for yaourt*
 ##############################################################################################
-加速yaourt
+sudo pacman -S fcitx-im # 全部安装
+sudo pacman -S fcitx-configtool # 图形化配置工具
+
+在~/.xprofile文件里面添加下面三行
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+
+作者：MrJiRen
+链接：https://www.jianshu.com/p/9e8fe8892b61
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+##############################################################################################
+*Not try for yaourt* 加速yaourt
 
 都知道pacman能够调用外部下载工具来代替默认的wget来给pacman提速
 比如将/etc/pacman.conf中
