@@ -1,68 +1,100 @@
-fdisk -l
-
-fdisk /dev/sda
+# Journey
 
 
-mkswap /dev/sda2
-swapon /dev/sda2
+# The journey of a thousand miles begins with one step:
+# 1. System bringup: Installation on the machine
+# 1.1 System Env:
+#     UEFI: Disable CMS feautre. (UEFI && GPT only)
+#     Archlinux: Network setup please google it first.
+#
+#     reboot and login archlinuxiso system.
 
-mount /dev/sda3 /mnt
+0. pacman install git && git clone https://github.com/wds1/linux-dev-env.git
 
-mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
+1. efivar -l or efibootmgr -v (Make sure UEFI mode)
 
-pacstrap /mnt base
+2. fdisk -l (List all of your HARDWARE DISK, make sure the disk is correct)
 
-genfstab -U -p /mnt >> /mnt/etc/fstab
+3. fdisk /dev/sda (*GPT*, sda that is I want to set it up disk)
+   Create 3 ~ 4 partitions, if you need 4(esp).
+   I just create 3 partitions, sda1(Boot, TYPE: UEFI), sda2(SWAP, TYPE: swap), sda3(Filesystem, TYPE: ext4 or ...)
 
-arch-chroot /mnt
+4. mkfs.vfat /dev/sda1 (UEFI system), mkfs.swap /dev/sda2, mkfs.ext4 /dev/sda3
 
-nano /etc/pacman.d/mirrorlist
+5. swapon /dev/sda #enable swap.
 
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+6. mount /dev/sda3 /mnt (filesystem)
+   mount /dev/sda1 /mnt/boot/EFI or mount /dev/sdax(esp if need)  /mnt/boot (esp)
 
-hwclock --systohc
+7. Network setup please google it.
 
-Uncomment en_US.UTF-8 UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:
-# locale-gen
+8. nano or vi /etc/pacman.d/mirrorlist (Change mirrorlist)
 
-vim /etc/locale.conf
-LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
+9. pacman -Sy
 
+10. pacstrap /mnt base base-devel
 
-vim /etc/hostname
-myhostname
+11. genfstab -U -p /mnt >> /mnt/etc/fstab
 
-vim /etc/hosts
+12. arch-chroot /mnt
 
-127.0.0.1	localhost
-::1		localhost
-127.0.1.1	myhostname.localdomain	myhostname
+13. vim /etc/pacman.d/mirrorlist
 
-systemctl enable dhcpcd@eth0.service
+14. If need: ln -sf /usr/share/zoneinfo/Region/City /etc/localtime; hwclock --systohc --utc
 
-/etc/pacman.conf
-[multilib]
-Include = /etc/pacman.d/mirrorlist
+15. unmaks en_US.UTF-8 && locale-gen
+
+16. echo LANG=en_US.UTF-8 >> /etc/locale.conf; export LANG=en_US.UTF-8
+
+17. echo *HOSTNAME* >> /etc/hostname
+
+18. vim /etc/hosts
+    127.0.0.1	localhost
+    ::1		localhost
+    127.0.1.1	*HOSTNAME*.localdomain	*HOSTNAME*
+
+19. systemctl enable dhcpcd@eth0.service
+
+20. vim /etc/pacman.conf, add:
+[archlinuxfr]
+Server = http://repo.archlinux.fr/$arch
 
 pacman -Sy
 
-pacman -S grub-bios linux-headers linux-lts linux-lts-headers intel-ucode
+21. pacman -S linux-headers linux-lts linux-lts-headers intel-ucode grub-efi-x86_64 efibootmgr
 
-mkinitcpio -p linux
+22. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug
 
-grub-install --target=i386-pc --recheck /dev/sda
-cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-grub-mkconfig -o /boot/grub/grub.cfg
+23. grub-mkconfig -o /boot/grub/grub.cfg
 
-useradd -m -g users -G wheel,storage,power -s /bin/bash johndoe
-passwd johndoe
+24. cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo (Not sure about this, need to check)
+
+25 user add:
+useradd -m -g users -G wheel,storage,power -s /bin/bash youtube
+passwd youtube
 
 
-sudo pacman -S xorg-server xorg-xinit xorg-server-utils
+#APPs install
+sudo pacman -S yaourt git openssh
 
-sudo pacman -S nvidia lib32-nvidia-utils
+*Not try for yaourt*
+##############################################################################################
+加速yaourt
+
+都知道pacman能够调用外部下载工具来代替默认的wget来给pacman提速
+比如将/etc/pacman.conf中
+XferCommand = /usr/bin/wget –passive-ftp -c -O %o %u
+注释掉,同时添加
+XferCommand = /usr/bin/axel -o %o %u
+即可使用axel多线程下载工具
+而要让yaourt也支持多线程,只需修改/etc/makepkg.conf
+
+将’http::/usr/bin/wget -c -t 3 –waitretry=3 -O %o %u’改成了’http::/usr/bin/axel -o %o %u’ 
+##############################################################################################
+
+yaourt nvidia
+yaourt thunar
+sudo pacman -S xorg-server xorg-xinit xorg-server-utils thunar
 
 pacman -S  vim xorg-twm xorg-xclock i3 dmenu feh dunst  networkmanager network-manager-applet lxappearance
 
