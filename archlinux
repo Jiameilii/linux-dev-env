@@ -79,7 +79,9 @@ grub-install --target=i386-pc /dev/sdx (Maybe I need to find out why target must
 
 23. grub-mkconfig -o /boot/grub/grub.cfg
 
-24. user add:
+24. passwd #Change root pswd
+
+25. user add:
 useradd -m -g users -G wheel,storage,power -s /bin/bash youtube
 passwd youtube
 
