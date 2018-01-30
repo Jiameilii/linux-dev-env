@@ -76,6 +76,7 @@ passwd youtube
 
 #APPs install
 sudo pacman -S yaourt git openssh fcitx
+pacman -S xorg-server xorg-xinit xorg-apps 
 
 ##############################################################################################
 sudo pacman -S fcitx-im # 全部安装
@@ -106,9 +107,12 @@ XferCommand = /usr/bin/axel -o %o %u
 ##############################################################################################
 
 yaourt nvidia
-yaourt thunar
-sudo pacman -S xorg-server xorg-xinit xorg-server-utils thunar
 
+#xfce4
+thunar
+
+#i3
 pacman -S  vim xorg-twm xorg-xclock i3 dmenu feh dunst  networkmanager network-manager-applet lxappearance
-
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+
+#kde
