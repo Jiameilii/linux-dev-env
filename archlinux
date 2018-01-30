@@ -61,15 +61,25 @@ Server = http://repo.archlinux.fr/$arch
 
 pacman -Sy
 
-21. pacman -S linux-headers linux-lts linux-lts-headers intel-ucode grub-efi-x86_64 efibootmgr
 
+21. pacman -S linux-headers linux-lts linux-lts-headers (intel-ucode)
+
+#if EFI
+*EFI*:
+pacman -S efibootmgr grub-efi-x86_64
 22. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug
+
+#Tested, It had no effect on me. Please ignore step: 24
+22.1. cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo (Not sure about this, need to check)
+#else
+*NON EF*: GeneralBios:
+pacman -S grub
+grub-install --target=i386-pc /dev/sdx (Maybe I need to find out why target must eq i386)
+#endif
 
 23. grub-mkconfig -o /boot/grub/grub.cfg
 
-24. cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo (Not sure about this, need to check)
-
-25 user add:
+24. user add:
 useradd -m -g users -G wheel,storage,power -s /bin/bash youtube
 passwd youtube
 
