@@ -1,0 +1,60 @@
+###Basic knowledge
+
+##Layers: https://en.wikipedia.org/wiki/Window_manager#/media/File:Schema_of_the_layers_of_the_graphical_user_interface.svg
+1. X: Xorg: Display server: 
+
+    Display layer(Display server): Xorg (Or KWin)
+               |
+              \|/
+    ------------------------------
+              Kernel
+
+
+2. WM: i3: Tiling Window Manager:
+
+    Display layer(Display server): Xorg -----> WM: I3(or awesome)
+               |
+              \|/
+    ------------------------------
+              Kernel
+    i3: Use xcb instead of Xlib.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ####Packages####
+    From: @Algorithm79: https://github.com/Algorithm79/Dotfiles_i3 && https://www.youtube.com/watch?v=L3yYEu-NKVI
+    0. Theme && Icons Manager:
+                           Lxappearance: lxappearance-gtk3 or lxappearance(GTK2) 
+    1. Volume Control:     xxx
+    2. Network Manager:    xxx
+    3. Sleep mode：        Caffeine: https://aur.archlinux.org/packages/caffeine/: Based on: GTK3 && Python
+    4. Desktop notifications: 
+                           Dunst: https://wiki.archlinux.org/index.php/Dunst: ~/.config/dunst/dunstrc
+    5. music service:      Spotify: https://wiki.archlinux.org/index.php/spotify: Based on: GTK2, libx11...
+    6. window switcher:    Rofi:  https://wiki.archlinux.org/index.php/Rofi Or
+                           rofi-dmenu: https://aur.archlinux.org/packages/rofi-dmenu/
+    7. Terminal:           RUXVT.....
+    8. File manager:       Ranger
+    9. Image preview:      w3m
+    10. Image Viewer:      feh
+    11. Media:             mplayer
+    12. Music player:      ncmpcpp
+    13. Browser:           Qutebrowser.....(Chrome is my favorite)
+    14. Manager Wallpapers:
+                           nitrogen: https://www.archlinux.org/packages/extra/x86_64/nitrogen/: GTK2
+    15. Login Manager:     Lightdm: https://wiki.archlinux.org/index.php/LightDM: GTK3(GTK3 Dark Theme) or GTK(lightdm-gtk-greeter)
+    16. LockScreen:        Betterlockscreen: https://aur.archlinux.org/packages/betterlockscreen/: depend on: i3lock-color...
+    xx. Fun...:            cmatrix 
