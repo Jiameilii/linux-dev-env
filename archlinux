@@ -127,4 +127,6 @@ thunar
 pacman -S  vim xorg-twm xorg-xclock i3 dmenu feh dunst  networkmanager network-manager-applet lxappearance
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 
-#kde
+#For easy install: Thanks erik.
+https://github.com/erikdubois/Archi3
+https://erikdubois.be/
