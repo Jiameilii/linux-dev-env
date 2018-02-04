@@ -9,113 +9,81 @@
 #
 #     reboot and login archlinuxiso system.
 
-0. pacman install git && git clone https://github.com/wds1/linux-dev-env.git
+#!/bin/bash
 
-1. efivar -l or efibootmgr -v (Make sure UEFI mode)
+#1.
+grep -A 1 China > /etc/pacman.d/mirrorlist
+sed -i 's/--//g' /etc/pacman.d/mirrorlist
+echo "[archlinuxfr]" >> /etc/pacman.conf
+echo "Server = http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
+echo "Done: mirrorlist"
 
-2. fdisk -l (List all of your HARDWARE DISK, make sure the disk is correct)
+#2.
+rm /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc --utc
+echo "Done: Time sync"
 
-3. fdisk /dev/sda (*GPT*, sda that is I want to set it up disk)
-   Create 3 ~ 4 partitions, if you need 4(esp).
-   I just create 3 partitions, sda1(Boot, TYPE: UEFI), sda2(SWAP, TYPE: swap), sda3(Filesystem, TYPE: ext4 or ...)
+#3.
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 
-4. mkfs.vfat /dev/sda1 (UEFI system), mkfs.swap /dev/sda2, mkfs.ext4 /dev/sda3
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+echo "Done: locale"
 
-5. swapon /dev/sda #enable swap.
+#4.
+HOSTNAME=arch
+echo $HOSTNAME > /etc/hostname
 
-6. mount /dev/sda3 /mnt (filesystem)
-   mount /dev/sda1 /mnt/boot/EFI or mount /dev/sdax(esp if need)  /mnt/boot (esp)
+/etc/hosts
+echo "127.0.0.1		localhost" > /etc/hosts
+echo "::1		localhost" >> /etc/hosts
+echo "127.0.1.1		$HOSTNAME.localdomain	$HOSTNAME" >> /etc/hosts
 
-7. Network setup please google it.
+systemctl enable dhcpcd@enp0s3.service
+echo "Done: Network"
 
-8. nano or vi /etc/pacman.d/mirrorlist (Change mirrorlist)
-
-9. pacman -Sy
-
-10. pacstrap /mnt base base-devel
-
-11. genfstab -U -p /mnt >> /mnt/etc/fstab
-
-12. arch-chroot /mnt
-
-13. vim /etc/pacman.d/mirrorlist
-
-14. If need: ln -sf /usr/share/zoneinfo/Region/City /etc/localtime; hwclock --systohc --utc
-
-15. unmaks en_US.UTF-8 && locale-gen
-
-16. echo LANG=en_US.UTF-8 >> /etc/locale.conf; export LANG=en_US.UTF-8
-
-17. echo *HOSTNAME* >> /etc/hostname
-
-18. vim /etc/hosts
-    127.0.0.1	localhost
-    ::1		localhost
-    127.0.1.1	*HOSTNAME*.localdomain	*HOSTNAME*
-
-19. systemctl enable dhcpcd@eth0.service
-
-20. vim /etc/pacman.conf, add:
-[archlinuxfr]
-Server = http://repo.archlinux.fr/$arch
-
+#5.
+echo "Sync mirror..."
 pacman -Sy
+echo "Done: sync"
 
+#6.
+pacman -S linux-headers
+echo "Done: install headers"
 
-21. pacman -S linux-headers linux-lts linux-lts-headers (intel-ucode)
-
+#7.
 #if EFI
-*EFI*:
-pacman -S efibootmgr grub-efi-x86_64
-22. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug
-
+#*EFI*:
+#pacman -S efibootmgr grub-efi-x86_64
+#grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug
 #Tested, It had no effect on me. Please ignore step: 24
-22.1. cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo (Not sure about this, need to check)
+#cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo (Not sure about this, need to check)
 #else
-*NON EF*: GeneralBios:
+#*NON EF*: GeneralBios:
 pacman -S grub
-grub-install --target=i386-pc /dev/sdx (Maybe I need to find out why target must eq i386)
+grub-install --target=i386-pc /dev/sda
 #endif
 
-23. grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
+echo "Done: install grub"
 
-24. passwd #Change root pswd
+#8.
+echo "Changing root password..."
+passwd #Change root pswd
 
-25. user add:
-useradd -m -g users -G wheel,storage,power -s /bin/bash youtube
-passwd youtube
-
+#9.
+echo "Add user wds password..."
+useradd -m -g users -G wheel,storage,power -s /bin/bash wds 
+passwd wds 
 
 #APPs install
-sudo pacman -S yaourt git openssh fcitx
-pacman -S xorg-server xorg-xinit xorg-apps 
+pacman -S wqy-zenhei
+pacman -S yaourt git openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
+pacman -S xorg-server xorg-xinit xorg-apps
 
+exit
 ##############################################################################################
-sudo pacman -S fcitx-im # 全部安装
-sudo pacman -S fcitx-configtool # 图形化配置工具
-
-在~/.xprofile文件里面添加下面三行
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-
-作者：MrJiRen
-链接：https://www.jianshu.com/p/9e8fe8892b61
-來源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-##############################################################################################
-*Not try for yaourt* 加速yaourt
-
-都知道pacman能够调用外部下载工具来代替默认的wget来给pacman提速
-比如将/etc/pacman.conf中
-XferCommand = /usr/bin/wget –passive-ftp -c -O %o %u
-注释掉,同时添加
-XferCommand = /usr/bin/axel -o %o %u
-即可使用axel多线程下载工具
-而要让yaourt也支持多线程,只需修改/etc/makepkg.conf
-
-将’http::/usr/bin/wget -c -t 3 –waitretry=3 -O %o %u’改成了’http::/usr/bin/axel -o %o %u’ 
 ##############################################################################################
 
 yaourt nvidia
@@ -126,7 +94,3 @@ thunar
 #i3
 pacman -S  vim xorg-twm xorg-xclock i3 dmenu feh dunst  networkmanager network-manager-applet lxappearance
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-
-#For easy install: Thanks erik.
-https://github.com/erikdubois/Archi3
-https://erikdubois.be/
