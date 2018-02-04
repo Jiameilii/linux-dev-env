@@ -14,7 +14,6 @@ hwclock --systohc --utc
 echo "Done: Time sync"
 
 #3.
-echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 
 echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -68,7 +67,8 @@ useradd -m -g users -G wheel,storage,power -s /bin/bash wds
 passwd wds 
 
 #APPs install
-pacman -S yaourt guake git openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
+pacman -S wqy-zenhei
+pacman -S yaourt git openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
 pacman -S xorg-server xorg-xinit xorg-apps
 
 exit
