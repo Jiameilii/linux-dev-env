@@ -1,6 +1,7 @@
+#!/bin/bash
+
+
 # Journey
-
-
 # The journey of a thousand miles begins with one step:
 # 1. System bringup: Installation on the machine
 # 1.1 System Env:
@@ -8,8 +9,6 @@
 #     Archlinux: Network setup please google it first.
 #
 #     reboot and login archlinuxiso system.
-
-#!/bin/bash
 
 #1.
 grep -A 1 China > /etc/pacman.d/mirrorlist
