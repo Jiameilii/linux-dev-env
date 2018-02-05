@@ -85,12 +85,30 @@ passwd #Change root pswd
 #9.
 echo "Add user wds password..."
 useradd -m -g users -G wheel,storage,power -s /bin/bash wds 
-passwd wds 
+passwd wds
+
+#10.
+echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 
 #APPs install
 pacman -S yaourt openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
 pacman -S xorg-server xorg-xinit xorg-apps
 
+#StumpWM
+pacman -S yaourt
+pacman -S sbcl
+yaourt clx
+yaourt alexandria
+
+echo "(ql:quickload \"cl-ppcre\")"
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+#(quicklisp-quickstart:install)
+#(ql:add-to-init-file)
+#(ql:quickload "cl-ppcre")
+####(ql:quickload "clx")
+####(ql:quickload "cl-ppcre")
+####(ql:quickload "alexandria")
 exit
 ##############################################################################################
 ##############################################################################################
