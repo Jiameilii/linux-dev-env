@@ -109,6 +109,10 @@ sbcl --load quicklisp.lisp
 ####(ql:quickload "clx")
 ####(ql:quickload "cl-ppcre")
 ####(ql:quickload "alexandria")
+
+git clone git://github.com/stumpwm/stumpwm.git
+cd stumpwm
+autoconf && ./configure && make
 exit
 ##############################################################################################
 ##############################################################################################
