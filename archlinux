@@ -97,8 +97,6 @@ pacman -S xorg-server xorg-xinit xorg-apps
 #StumpWM
 pacman -S yaourt
 pacman -S sbcl
-yaourt clx
-yaourt alexandria
 
 echo "(ql:quickload \"cl-ppcre\")"
 curl -O https://beta.quicklisp.org/quicklisp.lisp
@@ -109,6 +107,8 @@ sbcl --load quicklisp.lisp
 ####(ql:quickload "clx")
 ####(ql:quickload "cl-ppcre")
 ####(ql:quickload "alexandria")
+#yaourt clx
+#yaourt alexandria
 
 git clone git://github.com/stumpwm/stumpwm.git
 cd stumpwm
