@@ -18,3 +18,18 @@ fi
 
 # stumpwm
 exec /usr/local/bin/stumpwm
+
+exit
+#Copy from pschmitt/xinit-config
+############
+#  SYSTEM  #
+############
+stalonetray &
+spacefm -d &
+(
+    urxvtd -q -o -f
+    # TODO: Use a systemd service instead
+    xrdb -merge $HOME/.config/Xresources/Xresources
+    urxvtc -name "tmux" -e $SHELL -c "tmux -2u attach"
+) &
+nitrogen --restore &
