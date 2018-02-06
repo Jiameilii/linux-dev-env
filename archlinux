@@ -105,12 +105,9 @@ curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp
 #(quicklisp-quickstart:install)
 #(ql:add-to-init-file)
+#(ql:quickload "clx")
 #(ql:quickload "cl-ppcre")
-####(ql:quickload "clx")
-####(ql:quickload "cl-ppcre")
-####(ql:quickload "alexandria")
-#yaourt clx
-#yaourt alexandria
+#(ql:quickload "alexandria")
 
 git clone git://github.com/stumpwm/stumpwm.git
 cd stumpwm
