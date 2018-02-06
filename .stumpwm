@@ -1,3 +1,5 @@
+;;;Copy from Madper
+
 (in-package :stumpwm)
 
 (set-prefix-key (kbd "C-j"))
