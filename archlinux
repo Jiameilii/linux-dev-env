@@ -119,9 +119,7 @@ cd
 cd linux-dev-env
 cp .stumpwmrc /home/wds/
 cp .Xdefaults /home/wds/
-
-cp /etc/X11/xinit/xinitrc /home/wds/.xinitrc
-echo "exec /usr/local/bin/stumpwm" >> /home/wds/.xinitrc
+cp .xinitrc /home/wds/
 
 exit
 ##############################################################################################
