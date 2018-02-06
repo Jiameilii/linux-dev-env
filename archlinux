@@ -11,13 +11,17 @@
 #     reboot and login archlinuxiso system.
 
 #1.
-NETDEV=
+NETDEV=enp0s3
 if [ ! -n "$NETDEV" ]; then
   echo "NETDEV IS NULL."
 else
   echo "Let's start!"
 fi
 
+#Copy config
+cp .stumpwmrc ~/
+
+#Config system
 cd
 grep -A 1 China /etc/pacman.d/mirrorlist > tmp
 sed -i 's/--//g' tmp
@@ -113,6 +117,11 @@ sbcl --load quicklisp.lisp
 git clone git://github.com/stumpwm/stumpwm.git
 cd stumpwm
 autoconf && ./configure && make
+sudo make install
+
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+echo "exec /usr/local/bin/stumpwm" >> ~/.xinitrc
+
 exit
 ##############################################################################################
 ##############################################################################################
