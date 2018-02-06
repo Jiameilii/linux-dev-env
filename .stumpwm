@@ -1,0 +1,52 @@
+(in-package :stumpwm)
+
+(set-prefix-key (kbd "C-j"))
+
+(setf *message-window-gravity* :center)
+(setf *input-window-gravity* :center)
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer set Master 5%-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer set Master 5%+")
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer set Master toggle")
+
+(define-key *root-map* (kbd "I") "show-window-properties")
+
+(defcommand urxvt () ()
+  "Start an urxvt instance or switch to it, if it is already running."
+  (run-or-raise "urxvt" '(:instance "urxvt")))
+(define-key *root-map* (kbd "c") "urxvt")
+
+(defcommand firefox () ()
+  "Start an urxvt instance or switch to it, if it is already running."
+  (run-or-raise "firefox-nightly" '(:class "Nightly")))
+(define-key *root-map* (kbd "f") "firefox")
+
+(defcommand okular () ()
+  "Start an urxvt instance or switch to it, if it is already running."
+  (run-or-raise "okular" '(:instance "okular")))
+(define-key *root-map* (kbd "O") "okular")
+
+(defcommand deadbeef () ()
+  "Start an urxvt instance or switch to it, if it is already running."
+  (run-or-raise "deadbeef" '(:instance "deadbeef")))
+(define-key *root-map* (kbd "d") "deadbeef")
+
+(dotimes (i 13)
+  (unless (eq i 0) ; F0 is non-existant and will error.
+    (define-key *top-map* (kbd (format nil "M-F~a" i)) (format nil "gselect ~a" i))))
+(run-commands "gnewbg Web" "gnewbg Media")
+(run-shell-command "compton --backend xr_glx_hybrid")
+(run-shell-command "fcitx")
+
+(defvar *es-win* nil
+  "to hold the windo called emacsclient")
+(defun save-es-called-win ()
+  (setf *es-win* (current-window)))
+
+(defun return-es-called-win (win)
+  (let* ((group (window-group win))
+         (frame (window-frame win))
+         (old-frame (tile-group-current-frame group)))
+    (frame-raise-window group frame win)
+    (focus-all win)
+    (unless (eq frame old-frame)
+      (show-frame-indicator group))))
