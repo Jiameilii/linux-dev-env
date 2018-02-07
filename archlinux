@@ -91,15 +91,34 @@ passwd wds
 #10.
 echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 
-
 #APPs install
-sudo pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
-sudo pacman -S xorg-server xorg-xinit xorg-apps
+pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
+pacman -S xorg-server xorg-xinit xorg-apps
 
 #StumpWM
-sudo pacman -S yaourt
-sudo pacman -S sbcl
+pacman -S yaourt
+pacman -S sbcl
 
-su wds
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+#(quicklisp-quickstart:install)
+#(ql:add-to-init-file)
+#(ql:quickload "clx")
+#(ql:quickload "cl-ppcre")
+#(ql:quickload "alexandria")
+
+git clone git://github.com/stumpwm/stumpwm.git
+cd stumpwm
+autoconf && ./configure && make
+sudo make install
+cd
+
+#11. Copy config
+cd linux-dev-env
+cp .stumpwmrc /home/wds/
+cp .Xdefaults /home/wds/
+cp .xinitrc /home/wds/
+
+#Do not install Hermit from AUR, this will cause stumpwm hangup.
 
 exit
