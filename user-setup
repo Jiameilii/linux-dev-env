@@ -1,0 +1,21 @@
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+#(quicklisp-quickstart:install)
+#(ql:add-to-init-file)
+#(ql:quickload "clx")
+#(ql:quickload "cl-ppcre")
+#(ql:quickload "alexandria")
+
+git clone git://github.com/stumpwm/stumpwm.git
+cd stumpwm
+autoconf && ./configure && make
+sudo make install
+cd
+
+#11. Copy config
+cd linux-dev-env
+cp .stumpwmrc /home/wds/
+cp .Xdefaults /home/wds/
+cp .xinitrc /home/wds/
+
+yaourt Hermit
