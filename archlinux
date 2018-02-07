@@ -91,14 +91,15 @@ passwd wds
 #10.
 echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 
+su wds
+cd
 #APPs install
-pacman -S xterm rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
-pacman -S xorg-server xorg-xinit xorg-apps
+sudo pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
+sudo pacman -S xorg-server xorg-xinit xorg-apps
 
 #StumpWM
-pacman -S yaourt
-yaourt Hermit
-pacman -S sbcl
+sudo pacman -S yaourt
+sudo pacman -S sbcl
 
 echo "(ql:quickload \"cl-ppcre\")"
 curl -O https://beta.quicklisp.org/quicklisp.lisp
@@ -121,15 +122,6 @@ cp .stumpwmrc /home/wds/
 cp .Xdefaults /home/wds/
 cp .xinitrc /home/wds/
 
+yaourt Hermit
+
 exit
-##############################################################################################
-##############################################################################################
-
-yaourt nvidia
-
-#xfce4
-thunar
-
-#i3
-pacman -S  vim xorg-twm xorg-xclock i3 dmenu feh dunst  networkmanager network-manager-applet lxappearance
-pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
