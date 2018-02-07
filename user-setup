@@ -13,6 +13,7 @@ sudo make install
 cd
 
 #11. Copy config
+git clone https://github.com/wds1/linux-dev-env.git
 cd linux-dev-env
 cp .stumpwmrc /home/wds/
 cp .Xdefaults /home/wds/
