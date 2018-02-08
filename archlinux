@@ -93,8 +93,9 @@ echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 
 #APPs install
 pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
-pacman -S xorg-server xorg-xinit xorg-apps
-
+pacman -S xorg-{server,xinit,apps}
+pacman -S xorg-fonts-{100dpi,75dpi,cyrillic,misc,type1}
+pacman -S arandr zsh
 #StumpWM
 pacman -S yaourt
 pacman -S sbcl
@@ -115,9 +116,9 @@ cd
 
 #11. Copy config
 cd linux-dev-env
-cp .stumpwmrc /home/wds/
-cp .Xdefaults /home/wds/
-cp .xinitrc /home/wds/
-
+cp -a .dotfiles /home/wds/
+chown -R wds /home/wds/.dotfiles/
+cp usr-setup /home/wds/
+chown wds /home/wds/usr-setup
 #Do not install Hermit from AUR, this will cause stumpwm hangup.
 exit

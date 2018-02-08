@@ -1,0 +1,15 @@
+ln -s ./dotfiles/.xinitrc ~/.xinitrc
+ln -s ./dotfiles/.stumpwmrc ~/.stumpwmrc
+ln -s ./dotfiles/.Xdefaults ~/.Xresources
+
+export ZSH="$HOME/.dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+export ZSH_CUSTOM="$ZSH/custom"
+#Zsh Highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+#Zsh autosuggestiongs
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+rm ~/.zshrc
+ln -s ./dotfiles/.zshrc ~/.zshrc
