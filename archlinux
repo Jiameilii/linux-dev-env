@@ -96,16 +96,23 @@ echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S xorg-fonts-{100dpi,75dpi,cyrillic,misc,type1}
 pacman -S noto-fonts-cjk
 cp -a $REPO_DIR/fonts/custom /usr/share/fonts/
+fc-cache -fv
+fc-list | grep Hermit
+fc-list | grep Source
 
 #APPs install
 pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
 pacman -S xorg-{server,xinit,apps}
 pacman -S arandr zsh
+systemctl enable sshd.service
+systemctl start sshd.service
+
+pacman -S yaourt
+yaourt peco
+yaourt google-chrome
 
 #StumpWM
-pacman -S yaourt
 pacman -S sbcl
-
 curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp
 #(quicklisp-quickstart:install)
