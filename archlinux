@@ -95,7 +95,7 @@ echo "wds ALL=(ALL) ALL" >> /etc/sudoers
 #fonts
 pacman -S xorg-fonts-{100dpi,75dpi,cyrillic,misc,type1}
 pacman -S noto-fonts-cjk
-cp $REPO_DIR/fonts/custom /usr/share/fonts/
+cp -a $REPO_DIR/fonts/custom /usr/share/fonts/
 
 #APPs install
 pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
