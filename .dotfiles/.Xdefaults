@@ -138,7 +138,7 @@ URxvt*scrollBar:                     false
 URxvt.depth: 32
 
 ! special colors
-*.foreground:  #93a1a1
+*.foreground:  #cddfdf
 *.background:  #002b36
 *.cursorColor:  #93a1a1
 ! black
@@ -158,8 +158,9 @@ URxvt.depth: 32
 *.color4:      #2ba2f1
 *.color12:     #2ba2f1
 ! magenta
-*.color5:      #7c83e1
-*.color13:     #7c83e1
+*.color5:	#ca3a3d
+*.color13:	#7c83e1
+
 ! cyan
 *.color6:      #2aa198
 *.color14:     #2aa198
