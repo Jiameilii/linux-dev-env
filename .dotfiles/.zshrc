@@ -1,3 +1,5 @@
+# This file is copied from Madper !!!!!!!!!
+#
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -142,8 +144,24 @@ gs () {
         git show $(git log --oneline | peco | cut -d' ' -f1)
 }
 
+local LAMBDA="%(?,%{$fg_bold[green]%}λ,%{$fg_bold[red]%}λ)"
+
+GREEN="%{$fg_bold[green]%}"
+YELLOW="%{$fg_bold[yellow]%}"
+CYAN="%{$fg_bold[cyan]%}"
+RED="%{$fg_bold[red]%}"
+RESET="%{$reset_color%}"
+
+PROMPT='${LAMBDA}->$YELLOW%c $(git_prompt_info) $RESET'
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" $CYAN"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY=" ${RED}×"
+ZSH_THEME_GIT_PROMPT_CLEAN=" ${GREEN}✓"
+
 #PROMPT config
 #PROMPT='${ret_status}wds:%{$fg[cyan]%}%c:^:%{$reset_color%}%{$fg_bold[blue]%}> %{$reset_color%}'
-PROMPT='${ret_status}103:%{$fg[cyan]%}%c:^:%{$reset_color%}%{$fg_bold[blue]%}> %{$reset_color%}'
+#PROMPT='${ret_status} wds:%{$fg[cyan]%}%c:^:%{$reset_color%}%{$fg_bold[blue]%}> %{$reset_color%}'
+
 export PATH=$PATH:~/bin
 export PATH="$HOME/.cargo/bin:$PATH"
