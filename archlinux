@@ -85,7 +85,7 @@ passwd #Change root pswd
 
 #9.
 echo "Add user wds password..."
-useradd -m -g users -G wheel,storage,power -s /bin/bash wds 
+useradd -m -g users -G wheel,storage,power -s /bin/bash wds
 passwd wds
 
 #10.
@@ -120,5 +120,4 @@ cp .Xdefaults /home/wds/
 cp .xinitrc /home/wds/
 
 #Do not install Hermit from AUR, this will cause stumpwm hangup.
-
 exit
