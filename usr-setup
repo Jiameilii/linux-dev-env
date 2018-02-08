@@ -1,6 +1,7 @@
 ln -s ./.dotfiles/.xinitrc ~/.xinitrc
 ln -s ./.dotfiles/.stumpwmrc ~/.stumpwmrc
-ln -s ./.dotfiles/.Xdefaults ~/.Xresources
+ln -s ./.dotfiles/.Xresources ~/.Xresources
+#ln -s ./.dotfiles/.Xdefaults ~/.Xresources
 
 export ZSH="$HOME/.dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
