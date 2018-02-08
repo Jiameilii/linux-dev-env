@@ -103,12 +103,13 @@ fc-list | grep Source
 #APPs install
 pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
 pacman -S xorg-{server,xinit,apps}
-pacman -S arandr zsh
+pacman -S arandr zsh okular
 systemctl enable sshd.service
 systemctl start sshd.service
 
 pacman -S yaourt
 yaourt peco
+yaourt urxvtconfig-git
 yaourt google-chrome
 
 #StumpWM
