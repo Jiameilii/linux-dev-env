@@ -108,9 +108,6 @@ systemctl enable sshd.service
 systemctl start sshd.service
 
 pacman -S yaourt
-yaourt peco
-yaourt urxvtconfig-git
-yaourt google-chrome
 
 #StumpWM
 pacman -S sbcl
