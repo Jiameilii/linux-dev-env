@@ -1,3 +1,7 @@
+yaourt peco
+yaourt urxvtconfig-git
+yaourt google-chrome
+
 ln -s ./.dotfiles/.xinitrc ~/.xinitrc
 ln -s ./.dotfiles/.stumpwmrc ~/.stumpwmrc
 ln -s ./.dotfiles/.Xresources ~/.Xresources
