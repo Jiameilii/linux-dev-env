@@ -17,7 +17,7 @@
 (define-key *root-map* (kbd "c") "urxvt")
 
 (defcommand chrome () ()
-  (run-or-raise "google-chrome-stable" '(:class "google-chrome")))
+  (run-or-raise "google-chrome-stable" '(:class "Google-chrome")))
 (define-key *root-map* (kbd "f") "chrome")
 
 (defcommand okular () ()
