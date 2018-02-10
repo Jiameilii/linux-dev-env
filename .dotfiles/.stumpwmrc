@@ -12,14 +12,22 @@
 
 (define-key *root-map* (kbd "I") "show-window-properties")
 
+;;Terminal
 (defcommand urxvt () ()
-  (run-or-raise "urxvt" '(:instance "urxvt")))
+  (run-or-raise "urxvt -pe selection-to-clipboard" '(:instance "urxvt")))
 (define-key *root-map* (kbd "c") "urxvt")
 
+;;Borwser
 (defcommand chrome () ()
   (run-or-raise "google-chrome-stable" '(:class "Google-chrome")))
-(define-key *root-map* (kbd "f") "chrome")
+(define-key *root-map* (kbd "g") "chrome")
 
+;;File Manager
+(defcommand filemanager-gui () ()
+  (run-or-raise "nemo" '(:class "Nemo")))
+(define-key *root-map* (kbd "f") "filemanager-gui")
+
+;;PDF Viewer
 (defcommand okular () ()
   (run-or-raise "okular" '(:instance "okular")))
 (define-key *root-map* (kbd "O") "okular")
