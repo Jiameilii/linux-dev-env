@@ -6,6 +6,10 @@ ln -s ~/.dotfiles/.xinitrc ~/.xinitrc
 ln -s ~/.dotfiles/.stumpwmrc ~/.stumpwmrc
 ln -s ~/.dotfiles/.Xdefaults ~/.Xdefaults
 ln -s ~/.dotfiles/.tmux.config ~/.tmux.config
+ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/.gitignore ~/.gitignore
+ln -s ~/.dotfiles/.gitattributes ~/.gitattributes
+ln -sf ~/.dotfiles/.git-templatedir ~/.git-templatedir
 
 export ZSH="$HOME/.dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
