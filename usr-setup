@@ -22,3 +22,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 
 rm ~/.zshrc
 ln -s ./.dotfiles/.zshrc ~/.zshrc
+
+#EMACS config
+rm -rf ~/.emacs.d/
+git clone https://github.com/wds1/prelude.git ~/.emacs.d
+cp ~/.emacs.d/sample/prelude-modules.el ~/.emacs.d/
