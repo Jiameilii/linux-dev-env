@@ -1,0 +1,45 @@
+[user]
+	email = wds@wds1.cn
+	name = D. S Wang
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	log = auto
+	whatchanged = auto
+	interactive = auto
+[color "diff"]
+	meta = blue black bold
+[core]
+	editor = vim
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
+[pretty]
+	fixes = Fixes: %h (\"%s\")
+[merge]
+	tool = vimdiff
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	df = diff
+	dc = diff --cached
+	br = branch -vvv
+	log = log --graph
+	lg = log --graph --since=6.month
+	lg1 = whatchanged --graph --since=1.month
+	lg2 = whatchanged --graph --since=2.month
+	lg3 = whatchanged --graph --since=3.month
+	lg4 = whatchanged --graph --since=4.month
+	l = log --graph --decorate --pretty=oneline --abbrev-commit
+	l1 = whatchanged --format='%Cred%h %Cgreen%s' --graph --since=1.year
+	l2 = whatchanged --format='%Cred%h %Cgreen%s' --graph --since=2.year
+	l3 = whatchanged --format='%Cred%h %Cgreen%s' --graph --since=3.year
+	l4 = whatchanged --format='%Cred%h %Cgreen%s' --graph --since=4.year
+	last = for-each-ref --sort=-committerdate --format=\"%(committername)@%(refname:short) [%(committerdate:short)] %(contents)\"
+	ls = log --graph --pretty=format:'%C(yellow)%h %C(blue)%ad %C(red)%d %C(reset)%s %C(green) [%cn]' --decorate --date=short
+[commit]
+	template = ~/.git-templatedir/git-commit-template
+[init]
+	templatedir = ~/.git-templatedir
