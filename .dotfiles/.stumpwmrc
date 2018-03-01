@@ -14,13 +14,17 @@
 
 ;;Terminal
 (defcommand urxvt () ()
-  (run-or-raise "urxvt -pe selection-to-clipboard" '(:instance "urxvt")))
+  (run-or-raise "urxvt -pe selection-to-clipboard -e bash -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME\"" '(:instance "urxvt")))
 (define-key *root-map* (kbd "c") "urxvt")
 
+(defcommand hyper () ()
+  (run-or-raise "hyper" '(:instance "hyper")))
+(define-key *root-map* (kbd "C") "hyper")
+
 ;;Borwser
-(defcommand chrome () ()
-  (run-or-raise "google-chrome-stable" '(:class "Google-chrome")))
-(define-key *root-map* (kbd "g") "chrome")
+(defcommand firefox () ()
+  (run-or-raise "firefox-nightly" '(:class "Nightly")))
+(define-key *root-map* (kbd "g") "firefox")
 
 ;;File Manager
 (defcommand filemanager-gui () ()
@@ -56,3 +60,5 @@
     (focus-all win)
     (unless (eq frame old-frame)
       (show-frame-indicator group))))
+
+(load-module "stumpish")

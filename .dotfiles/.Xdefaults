@@ -9,7 +9,7 @@
 ! URxvt*skipScroll:                     boolean
 ! URxvt*pastableTabs:                   boolean
 ! URxvt*scrollstyle:                    mode
-URxvt*scrollBar:                     false 
+URxvt*scrollBar:                     false
 ! URxvt*scrollBar_right:                boolean
 ! URxvt*scrollBar_floating:             boolean
 ! URxvt*scrollBar_align:                mode
@@ -105,8 +105,8 @@ URxvt*scrollBar:                     false
 ! URxvt*secondaryScroll:                boolean
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
-! URxvt*perl-ext-common:                string
-! URxvt*perl-ext:                       string
+!URxvt*perl-ext-common:			tabbed
+!URxvt*perl-ext:                         tabbed
 ! URxvt*iso14755:                       boolean
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
@@ -173,11 +173,11 @@ URxvt*scrollBar_right:   false
 URxvt*transparent:       false
 
 !URxvt.font: xft:Hermi:pixelsize=4
-URxvt*font: xft:Hermit:size=18:medium,xft:Noto Serif CJK SC:size=18,xft:Source Code Variable:size=18
+URxvt*font: xft:Hermit:size=12:medium,xft:Noto Serif CJK SC:size=12,xft:Source Code Variable:size=12
 !
-URxvt*boldFont: xft:Hermit:bold:size=18:style=medium,xft:Source Code Variable:size=18:style=Bold
-URxvt*italicFont: xft:Hermit:medium:size=18:style=medium
-URxvt*boldItalicFont: xft:Hermit:bold:size=18:style=medium
+URxvt*boldFont: xft:Hermit:bold:size=12:style=medium,xft:Source Code Variable:size=12:style=Bold
+URxvt*italicFont: xft:Hermit:medium:size=12:style=medium
+URxvt*boldItalicFont: xft:Hermit:bold:size=12:style=medium
 URxvt.letterSpace: 0
 
 *antialias:  true
@@ -214,11 +214,11 @@ URxvt.letterSpace: 0
 !URxvt.color15 : #FFFFFF
 
 
-!URxvt*font: xft:Hermit:pixelsize=18
+!URxvt*font: xft:Hermit:pixelsize=12
 
 !URxvt*font: xft:Hermit:medium:size=12:antialiasing=true,xft:Ubuntu
-!URxvt*font: xft:Hermit:size=18:medium:antialiasing,xft:Noto Serif CJK SC:size=18:antialiasing,xft:Source Code Variable:size=18:antialliasing
+!URxvt*font: xft:Hermit:size=12:medium:antialiasing,xft:Noto Serif CJK SC:size=12:antialiasing,xft:Source Code Variable:size=12:antialliasing
 !
-!URxvt*boldFont: xft:Hermit:bold:size=18:antialiasing=true:style=medium,xft:Source Code Variable:size=18:antiaiasing=ture:style=Bold
-!URxvt*italicFont: xft:Hermit:medium:size=18:antialiasing=true:style=medium
-!URxvt*boldItalicFont: xft:Hermit:bold:size=18:antialiasing=true:style=medium
+!URxvt*boldFont: xft:Hermit:bold:size=12:antialiasing=true:style=medium,xft:Source Code Variable:size=12:antiaiasing=ture:style=Bold
+!URxvt*italicFont: xft:Hermit:medium:size=12:antialiasing=true:style=medium
+!URxvt*boldItalicFont: xft:Hermit:bold:size=12:antialiasing=true:style=medium
