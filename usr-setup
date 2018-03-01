@@ -1,6 +1,7 @@
 yaourt peco
 yaourt urxvtconfig-git
-yaourt google-chrome
+#yaourt google-chrome
+yaourt firefox-always-nightly
 
 ln -s ~/.dotfiles/.xinitrc ~/.xinitrc
 ln -s ~/.dotfiles/.stumpwmrc ~/.stumpwmrc
@@ -10,6 +11,7 @@ ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.gitignore ~/.gitignore
 ln -s ~/.dotfiles/.gitattributes ~/.gitattributes
 ln -sf ~/.dotfiles/.git-templatedir ~/.git-templatedir
+sudo cp ~/.dotfiles/stumpwm.desktop /usr/share/xsessions/stumpwm.desktop
 
 export ZSH="$HOME/.dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -27,3 +29,5 @@ ln -s ./.dotfiles/.zshrc ~/.zshrc
 rm -rf ~/.emacs.d/
 git clone https://github.com/wds1/prelude.git ~/.emacs.d
 cp ~/.emacs.d/sample/prelude-modules.el ~/.emacs.d/
+
+echo "Please set shadowsock: sslocal -d start -s 176.xxx.xxx.xxx -p xxx -l xxx -k xxx -m chacha20"
