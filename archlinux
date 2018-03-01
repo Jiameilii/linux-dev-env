@@ -103,10 +103,11 @@ fc-list | grep Source
 #APPs install
 pacman -S rxvt-unicode openssh vim virtualbox-guest-utils virtualbox-guest-modules-arch
 pacman -S xorg-{server,xinit,apps}
-pacman -S arandr zsh okular libsodium shadowsocks nemo
+pacman -S arandr zsh okular libsodium shadowsocks nemo gdm
 systemctl enable sshd.service
 systemctl start sshd.service
 systemctl enable vboxservice.service
+systemctl enable gdm
 
 pacman -S yaourt
 
