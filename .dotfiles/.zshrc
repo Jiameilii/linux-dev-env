@@ -61,7 +61,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+# git
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
@@ -165,3 +165,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=" ${GREEN}✓"
 
 export PATH=$PATH:~/bin
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export EDITOR=es
+export ALTERNATE_EDITOR=vi
+export VISUAL=es
